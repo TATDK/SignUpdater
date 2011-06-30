@@ -1,13 +1,17 @@
 package example;
 
+//Listener (must be changed)
+import example.Listeners.MyPluginPluginListener;
+
+//Imports for SignUpdater
+import dk.earthgame.TAT.SignUpdater.SignUpdater;
+
+//Imports for Bukkit
 import org.bukkit.event.Event.Priority;
 import org.bukkit.event.Event.Type;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import dk.earthgame.TAT.SignUpdater.SignUpdater;
-import example.Listeners.MyPluginPluginListener;
 
 public class MyPlugin extends JavaPlugin {
     public PluginDescriptionFile info = null;
