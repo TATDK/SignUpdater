@@ -26,7 +26,7 @@ public class SignUpdater extends JavaPlugin {
 	//If the updater is running
 	boolean running;
 	//The runner/worker
-	Runner runner;
+	Runner runner = new Runner();
 	//Update containers
 	HashMap<Sign, String[]> Highest = new HashMap<Sign, String[]>();
 	HashMap<Sign, String[]> High    = new HashMap<Sign, String[]>();
@@ -155,9 +155,13 @@ public class SignUpdater extends JavaPlugin {
 		config.load();
 		
 		output = config.getBoolean("Output", false);
+		
+		if (output)
+			log.info(pdfFile.getName() + " - Config loaded");
 	}
 	
 	void CreateConfig() {
+		getDataFolder().mkdir();
 		String name = "config.yml";
 		File actual = new File(getDataFolder(), name);
 		if (!actual.exists()) {
@@ -174,7 +178,7 @@ public class SignUpdater extends JavaPlugin {
 					}
 				} catch (IOException e) {
 					e.printStackTrace();
-					log.warning("Error creating config file!");
+					log.warning(pdfFile.getName() + " - Error creating config file!");
 				} finally {
 					try {
 						if (input != null)
