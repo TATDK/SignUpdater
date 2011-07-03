@@ -52,6 +52,12 @@ public class SignUpdater extends JavaPlugin {
 		}
 	}
 	
+	/**
+	 * Add sign to the updater
+	 * @param priority Priority for the update (Highest first)
+	 * @param sign Sign that needs to be updated
+	 * @param lines New lines on sign (Require all 4 lines)
+	 */
 	public void AddSignUpdate(UpdaterPriority priority, Sign sign, String[] lines) {
 		switch (priority) {
 			case HIGHEST:
@@ -79,6 +85,10 @@ public class SignUpdater extends JavaPlugin {
 		}
 	}
 	
+	/**
+	 * Get the next sign in queue
+	 * @return Sign and new lines if found (else null)
+	 */
 	Entry<Sign, String[]> getNext() {
 		if (Highest.size() > 0) {
 			return Highest.entrySet().iterator().next();
@@ -98,6 +108,11 @@ public class SignUpdater extends JavaPlugin {
 		return null;
 	}
 	
+	/**
+	 * Get priority of sign
+	 * @param s Sign
+	 * @return Priority of sign if found (else null)
+	 */
 	UpdaterPriority getPriority(Sign s) {
 		if (Highest.containsKey(s))
 			return UpdaterPriority.HIGHEST;
@@ -112,6 +127,10 @@ public class SignUpdater extends JavaPlugin {
 		return null;
 	}
 	
+	/**
+	 * Remove sign from queue
+	 * @param s Sign
+	 */
 	void removeSign(Sign s) {
 		if (Highest.containsKey(s)) {
 			Highest.remove(s);
@@ -126,6 +145,10 @@ public class SignUpdater extends JavaPlugin {
 		}
 	}
 	
+	/**
+	 * Sign updating process
+	 * @author TAT
+	 */
 	class Runner implements Runnable {
 		@Override
         public void run() {
@@ -150,6 +173,9 @@ public class SignUpdater extends JavaPlugin {
         }
 	}
 	
+	/**
+	 * Load configuration
+	 */
 	void LoadConfig() {
 		config = new Configuration(new File(getDataFolder(), "config.yml"));
 		config.load();
@@ -160,6 +186,9 @@ public class SignUpdater extends JavaPlugin {
 			log.info(pdfFile.getName() + " - Config loaded");
 	}
 	
+	/**
+	 * Create configuration if not found
+	 */
 	void CreateConfig() {
 		getDataFolder().mkdir();
 		String name = "config.yml";
