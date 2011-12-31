@@ -17,6 +17,7 @@ public class MyPlugin extends JavaPlugin {
     public PluginDescriptionFile info = null;
     public SignUpdater SignUpdater;
     MyPluginPluginListener pluginListener = new MyPluginPluginListener(this);
+    MyPluginBlockListener blockListener = new MyPluginBlockListener(this);
 
     public void onEnable() {
         info = getDescription();
@@ -24,6 +25,7 @@ public class MyPlugin extends JavaPlugin {
 
         pm.registerEvent(Type.PLUGIN_ENABLE, pluginListener, Priority.Low, this);
         pm.registerEvent(Type.PLUGIN_DISABLE, pluginListener, Priority.Low, this);
+        pm.registerEvent(Type.SIGN_CHANGE, blockListener, Priority.Low, this);
 
         System.out.println("["+ info.getName() +"] Enabled.");
     }
