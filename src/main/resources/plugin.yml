@@ -1,3 +1,3 @@
-name: SignUpdater
-main: dk.earthgame.TAT.SignUpdater.SignUpdater
-version: 1.0.0
+name: ${project.name}
+main: ${project.artifactId}.${project.groupId}
+version: ${project.version}
